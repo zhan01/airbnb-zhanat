@@ -1,0 +1,119 @@
+
+<div class="container1"> 
+	<div class="panel panel-default">
+		<div class="panel-body">
+		
+		<!-- Image -->
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+
+			</div>
+		</div>
+
+		<br/>
+		<!-- Main Info -->
+		<div class="row">
+			<div class="col-md-8">
+				<div class="row">
+					<div class="col-md-3 text-center">
+						
+						<br/><br/>
+						
+						<p>Host from :<%= @room.user.fullname %></p>
+					</div>
+					<div class="col-md-9">
+						<h4><%= @room.listing_name %></h4>
+						<%= @room.address %>
+
+						<div class="row text-centre row-space-1">
+							<div class="col-sm-3">
+								<i class="fa fa-home fa-2x"></i>
+							</div>
+							<div class="col-sm-3">
+								<i class="fa fa-user fa-2x"></i>
+							</div>
+							<div class="col-sm-3">
+								<i class="fa fa-bed fa-2x"></i>
+							</div>
+							<div class="col-sm-3">
+								<i class="fa fa-ship fa-2x"></i>
+							</div>
+						</div>
+						<div class="row text-centre row-space-1">
+							<div class="col-sm-3">
+								<%= @room.home_type %>
+							</div>
+							<div class="col-sm-3">
+								<%= @room.accomodate %> <%= @room.accomodate > 1 ? "Guests":"Guest"  %>
+							</div>
+							<div class="col-sm-3">
+								<%= @room.bedroom %> <%= @room.bedroom > 1 ? "Bedrooms":"Bedroom"  %>
+							</div>
+							<div class="col-sm-3">
+								<%= @room.bathroom %> <%= @room.bedroom > 1 ? "Bathrooms":"Bathroom"  %>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<!-- Reservation form -->
+				<%= render 'reservations/form' %>
+			</div>
+			</div>
+		</div>
+				<hr>
+		<!-- About -->
+		<div class="row">
+			<div class="col-md-12">
+				<h2>About </h2>
+				<p><%= @room.summary%></p>
+			</div>
+		</div>
+		
+		<div class="col-md-12">
+			<hr>
+		<!-- Amenities -->
+		<div class="row">
+			<div class="col-md-2">
+				<h2>Amenities</h2>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-md-10">
+					<div class="row">
+						<div class="col-md-6">
+							<ul class="amenities">
+								<li class="<%= 'text-line-through' unless @room.is_tv%>">TV</li>
+								<li class="<%= 'text-line-through' unless @room.is_kitchen%>">Kitchen</li>
+								<li class="<%= 'text-line-through' unless @room.is_internet%>">Internet</li>	
+							</ul>
+						</div>
+						<div class="col-md-6">
+							<ul class="amenities">
+								<li class="<%= 'text-line-through' unless @room.is_heating %>">Heating</li>
+								<li class="<%= 'text-line-through' unless @room.is_air %>">Air Conditioning</li>
+							</ul>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr>
+
+		<% @room.photos.each_with_index do |photo, i| %>
+			<%= image_tag photo.url, width: 300 %>
+		<% end %>
+
+	
+
+		<br/>
+		<hr>
+							<div class="col-md-3 left">
+                              <%= link_to "Update", edit_room_path(@room), class: "btn btn-primary"%>
+                            </div>
+		
+	</div>
+</div>

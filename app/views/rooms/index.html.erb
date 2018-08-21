@@ -1,0 +1,61 @@
+<div class="background-image"></div>
+    <div class="container2"> 
+        <div id="search-box">
+            <h1>Listings</h1>
+
+            
+            
+            <h3>Let us find apartment for you</h3>
+           
+            
+            <%= form_tag rooms_path, method: :get do %>
+            <p>
+            <%= text_field_tag :query, params[:query] %>
+            <%= submit_tag "Search" , name: nil %>
+            </p>
+            <% end %>
+           
+            
+        </div>
+        <%= link_to "Sign in with Google", "/auth/google_oauth2", :style=>'color:#FFFFFF;', :class => "css_class" %>
+    </div>
+    </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+       <% if signed_in? %>
+            <%= image_tag  current_user.avatar.url, width: 50 if current_user.avatar.present? %>
+            <p> Signed in as: <%= current_user.email %> </p>
+            <%= button_to 'Sign out', sign_out_path, method: :delete %>
+        <% else %>
+            <%= link_to 'Sign in', sign_in_path %>
+      <% end %>
+</div>
+
+</br></br></br></br>
+<div class="container6">
+<strong><h1>Check Out New Listings</h1></strong>
+</div
+</br></br><hr></br></br></br></br>
+<
+
+
+    <div class="row">
+
+        <% @rooms.each do |room| %>
+            <div class="col-4">
+                <div class="card mb-5">
+                    <% if room.photos.length > 0%>
+                    <%= image_tag room.photos[0].url, class: "card-img-top" %>
+                    <% end %>
+                
+
+                    <div class="card-body">
+                        <h5 class="card-title">Name : <%= room.listing_name %></h5>
+                        <p class="card-text">Location : <%= room.address %></p>
+                        <p class="card-text">RM : <%= room.price %></p>
+                        <%= link_to "Book ", "/rooms/#{room.id}", class:"sidebar-link btn btn-primary"%>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+
+</div>
